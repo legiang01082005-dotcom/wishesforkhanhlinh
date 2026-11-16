@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Khánh Linh be my princess✨</title>
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Bộ phông chữ tiếng Việt chuẩn: Cormorant Upright, Playfair Display & Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Cormorant+Upright:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+  
+  <!-- Thư viện hiệu ứng pháo hoa Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <!-- Nền canvas vũ trụ sao băng -->
+  <canvas id="starfieldCanvas"></canvas>
+  <div class="aurora-bg"></div>
+  
+  <!-- Audio nhạc nền -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="" type="audio/mpeg" />
+  </audio>
+  
+  <!-- Nút điều khiển âm nhạc góc phải -->
+  <div id="musicToggle" class="music-orb hide" title="Bật/Tắt nhạc">
+    <div class="orb-ring"></div>
+    <div class="orb-core">🎵</div>
+  </div>
+  
+  <!-- ================= 1. MÀN HÌNH KHÓA ================= -->
+  <section id="lockScreen" class="lock-screen">
+    <div class="crystal-vault">
+      <div class="vault-glow"></div>
+      <div class="heart-lock-icon">
+        <svg viewBox="0 0 24 24" class="svg-heart">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+      
+      <h2 class="vault-title">Có cái gì đó bất ngờ ở đây nè!!!</h2>
+      <p class="vault-question">"Nếu là Khánh Linh sẽ nhớ ngày đầu tiên hai đứa nói chuyện với nhau..."</p>
+      
+      <div class="input-gate">
+        <div class="input-field-wrapper">
+          <input type="password" id="passInput" maxlength="8" placeholder="••••••••" autocomplete="off" />
+        </div>
+        <button id="btnLogin" class="btn-unlock-gate">
+          <span>Xác Nhận</span>
+          <div class="btn-sheen"></div>
+        </button>
+      </div>
+      
+      <p id="errorMsg" class="error-msg"></p>
+    </div>
+  </section>
+
+  <!-- ================= 2. TRANG CHỦ ================= -->
+  <main id="mainContent" class="main-content hide">
+    
+    <header class="hero-space">
+      <div class="badge-pill">Món quà đặc biệt dành cho cục hay dỗi của anh</div>
+      <h1 class="hero-name">Khánh Linh</h1>
+      <p class="hero-quote">“Gọi Khánh Linh là... Vì Khánh Linh luôn tồn tại trong anhhhhh ahihi”</p>
+      
+      <!-- Bộ đếm thời gian bên nhau -->
+      <div class="chrono-widget">
+        <div class="chrono-label">Hai đứa mình đã xuất hiện trong cuộc sống của nhau được:</div>
+        <div class="chrono-grid" id="loveTimer">
+          <div class="chrono-box">
+            <span id="days">00</span>
+            <label>Ngày</label>
+          </div>
+          <div class="chrono-separator">:</div>
+          <div class="chrono-box">
+            <span id="hours">00</span>
+            <label>Giờ</label>
+          </div>
+          <div class="chrono-separator">:</div>
+          <div class="chrono-box">
+            <span id="minutes">00</span>
+            <label>Phút</label>
+          </div>
+          <div class="chrono-separator">:</div>
+          <div class="chrono-box">
+            <span id="seconds">00</span>
+            <label>Giây</label>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- DANH SÁCH ẢNH KỶ NIỆM (ĐÃ BỎ DẢI LỤA Ở GIỮA) -->
+    <section class="ribbon-gallery-section">
+      <div class="section-badge">
+        <h2>Thời gian qua hai đứa mình đã có gìii</h2>
+        <p>Xem ảnh, lỡ tay bấm nào từng tấm hình biết đâu có gì đó✨</p>
+      </div>
+      <div class="ribbon-stream-wrapper">
+        <div class="ribbon-items-container">
+          <!-- 1 -->
+          <article class="ribbon-card left" data-full="images/1.jpg" data-caption="Ngày 13/09/2026 — Một ngày siêu bình thường của Thanh Giảng, tự nhiên lòi đâu ra nhỏ dễ thương vl nhắn tin:))) Tìm anh chi rứa hê.">
+            <div class="ribbon-pin">💫</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="images/1.jpg" alt="Khoảnh khắc 1" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">01</span><h4>"Hai, chào cậu"</h4></div>
+            </div>
+          </article>
+          <!-- 2 -->
+          <article class="ribbon-card right" data-full="images/12.jpg" data-caption="Khúc ni anh có ý định đẩy em ra ròi nè, thấy em thân thiết hơn anh bị ngại á. Giờ thì chồng yêu vợ yêu luôn rồi:))))">
+            <div class="ribbon-pin">✨</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="images/12.jpg" alt="Khoảnh khắc 2" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">02</span><h4>"Yêu đương mô là anh em":))))))</h4></div>
+            </div>
+          </article>
+          <!-- 3 -->
+          <article class="ribbon-card left" data-full="images/16.jpg" data-caption="Lần đầu tiên hai đứa gặp nhau nè, anh lục hết máy anh mà nỏ có ảnh nào luôn, xem ảnh ni thì em nói anh nghe em thấy em thấy anh như nào điii. À, mà đố Khánh Linh lần đầu 2 đứa gặp nhau là ngày mấy:)))">
+            <div class="ribbon-pin">🌸</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="images/16.jpg" alt="Khoảnh khắc 3" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">03</span><h4>First Date</h4></div>
+            </div>
+          </article>
+          <!-- 4 -->
+          <article class="ribbon-card right" data-full="images/13.jpg" data-caption="Sau lần đầu gặp là không đêm nào anh không nghe giọng em hết, nhiều khi thành thói quen luôn rồi mà anh không biết á.">
+            <div class="ribbon-pin">💖</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="images/13.jpg" alt="Khoảnh khắc 4" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">04</span><h4>Không thể thiếu hơi Khánh Linh</h4></div>
+            </div>
+          </article>
+          <!-- 5 -->
+          <article class="ribbon-card left" data-full="images/14.jpg" data-caption="Đố cục vợ biết lần đầu anh chở em đi học là cơ sở nào á:))) Mà anh hỏi nè, sao lúc đó bắt đầu em tìm anh nhiều hơn dọ, kể anh nghe coi, lúc đó thích anh chưa:)))">
+            <div class="ribbon-pin">🎬</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="images/14.jpg" alt="Khoảnh khắc 5" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">05</span><h4>Lần đầu chở Khánh Linh đi học nè</h4></div>
+            </div>
+          </article>
+          <!-- 6 -->
+          <article class="ribbon-card right" data-full="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=1200" data-caption="Mỗi lần Linh dỗi là một lần nhìn mặt vừa thương vừa buồn cười, chỉ muốn dỗ ngay thôi!">
+            <div class="ribbon-pin">🍬</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600" alt="Khoảnh khắc 6" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">06</span><h4>Cục hay dỗi của anh</h4></div>
+            </div>
+          </article>
+          <!-- 7 -->
+          <article class="ribbon-card left" data-full="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200" data-caption="Người con gái nhỏ nhắn, đáng yêu và là gu của anh ngay từ những cái nhìn đầu tiên.">
+            <div class="ribbon-pin">🌷</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600" alt="Khoảnh khắc 7" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">07</span><h4>Đúng gu anh rồi</h4></div>
+            </div>
+          </article>
+          <!-- 8 -->
+          <article class="ribbon-card right" data-full="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200" data-caption="Từng con đường góc phố đi cùng em, gió thổi mát rượi và lòng anh thấy nhẹ nhõm vô cùng.">
+            <div class="ribbon-pin">🛵</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600" alt="Khoảnh khắc 8" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">08</span><h4>Gió đêm dạo phố</h4></div>
+            </div>
+          </article>
+          <!-- 9 -->
+          <article class="ribbon-card left" data-full="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200" data-caption="Anh ít khi tâm sự với ai, nhưng trước mặt Linh thì anh có thể nói hết mọi điều thầm kín.">
+            <div class="ribbon-pin">☕</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600" alt="Khoảnh khắc 9" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">09</span><h4>Mở lòng sẻ chia</h4></div>
+            </div>
+          </article>
+          <!-- 10 -->
+          <article class="ribbon-card right" data-full="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200" data-caption="Kế hoạch yêu em đã được anh soạn sẵn từ hôm ấy rồi, em trốn không thoát đâu:)))">
+            <div class="ribbon-pin">🎯</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600" alt="Khoảnh khắc 10" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">10</span><h4>Kế hoạch yêu em</h4></div>
+            </div>
+          </article>
+          <!-- 11 -->
+          <article class="ribbon-card left" data-full="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200" data-caption="Chỉ cần được nhìn thấy Linh cười, bao nhiêu deadline hay mệt mỏi đều bay biến hết.">
+            <div class="ribbon-pin">☀️</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600" alt="Khoảnh khắc 11" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">11</span><h4>Năng lượng tích cực</h4></div>
+            </div>
+          </article>
+          <!-- 12 -->
+          <article class="ribbon-card right" data-full="https://images.unsplash.com/photo-1501901609772-df0848060b33?w=1200" data-caption="Có những buổi chiều ngắm hoàng hôn buông, anh chỉ thầm ước có em cùng ngắm mãi như vậy.">
+            <div class="ribbon-pin">🌅</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1501901609772-df0848060b33?w=600" alt="Khoảnh khắc 12" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">12</span><h4>Hoàng hôn bên em</h4></div>
+            </div>
+          </article>
+          <!-- 13 -->
+          <article class="ribbon-card left" data-full="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1200" data-caption="Em hỏi vì sao anh yêu em... Đơn giản vì em chính là điều kỳ diệu nhất đến với anh.">
+            <div class="ribbon-pin">💌</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600" alt="Khoảnh khắc 13" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">13</span><h4>Vì sao anh yêu em?</h4></div>
+            </div>
+          </article>
+          <!-- 14 -->
+          <article class="ribbon-card right" data-full="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200" data-caption="Chàng trai viết code cả ngày bỗng chốc trở nên lãng mạn chỉ vì một cô gái nhỏ.">
+            <div class="ribbon-pin">💻</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600" alt="Khoảnh khắc 14" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">14</span><h4>Code dành riêng cho em</h4></div>
+            </div>
+          </article>
+          <!-- 15 -->
+          <article class="ribbon-card left" data-full="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=1200" data-caption="Bàn tay nhỏ nhắn ấy, từ giờ để anh giữ thật chặt nhé, không buông đâu! ">
+            <div class="ribbon-pin">🤝</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600" alt="Khoảnh khắc 15" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">15</span><h4>Nắm lấy tay anh</h4></div>
+            </div>
+          </article>
+          <!-- 16 -->
+          <article class="ribbon-card right" data-full="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200" data-caption="Ngôn ngữ tình yêu của anh là sự hiện diện, anh hứa sẽ không bao giờ biến mất khỏi đời em.">
+            <div class="ribbon-pin">🌟</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600" alt="Khoảnh khắc 16" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">16</span><h4>Luôn luôn hiện diện</h4></div>
+            </div>
+          </article>
+          <!-- 17 -->
+          <article class="ribbon-card left" data-full="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=1200" data-caption="Anh không có nhiều, nhưng anh sẽ dành tất cả những gì tốt đẹp nhất mà anh có cho em.">
+            <div class="ribbon-pin">🎁</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600" alt="Khoảnh khắc 17" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">17</span><h4>Tất cả vì em</h4></div>
+            </div>
+          </article>
+          <!-- 18 -->
+          <article class="ribbon-card right" data-full="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200" data-caption="Chặng đường phía trước dài lắm, nhưng có Linh đi cùng thì anh chẳng sợ bất cứ điều gì nữa.">
+            <div class="ribbon-pin">🧭</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600" alt="Khoảnh khắc 18" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">18</span><h4>Chặng đường phía trước</h4></div>
+            </div>
+          </article>
+          <!-- 19 -->
+          <article class="ribbon-card left" data-full="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1200" data-caption="Hy vọng bàn thờ sau này anh ngồi có hình bóng của em bên cạnh nhó:))))">
+            <div class="ribbon-pin">💍</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=600" alt="Khoảnh khắc 19" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">19</span><h4>Hẹn ước trăm năm</h4></div>
+            </div>
+          </article>
+          <!-- 20 -->
+          <article class="ribbon-card right" data-full="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200" data-caption="Khánh Linh là điều tuyệt vời nhất mà Thanh Giảng có được trong thanh xuân này.">
+            <div class="ribbon-pin">👑</div>
+            <div class="card-inner">
+              <div class="card-img-holder">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600" alt="Khoảnh khắc 20" loading="lazy" />
+                <div class="shimmer-effect"></div>
+              </div>
+              <div class="card-caption"><span class="step-num">20</span><h4>Em là duy nhất</h4></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Thư tâm sự (Dạng phong thư bấm mở) -->
+    <section class="letter-cosmos">
+      <!-- 1. Giao diện phong thư khi chưa mở -->
+      <div id="envelopeCard" class="envelope-container">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+          <div class="envelope-seal">💌</div>
+          <h3 class="envelope-title">Một bức thư gửi Khánh Linh...</h3>
+          <p class="envelope-hint">Chạm vào để mở phong thư nhé ✨</p>
+        </div>
+      </div>
+
+      <!-- 2. Nội dung bức thư chi tiết (Ban đầu ẩn đi) -->
+      <div id="letterContentBox" class="parchment-glass hide">
+        <button id="btnCloseLetter" class="btn-close-letter" title="Đóng thư">×</button>
+        <div class="wax-seal-crest">✨</div>
+        <h3 class="letter-head">"Hai, chào cậu"</h3>
+        
+        <div class="letter-body">
+          <p>Chào Khánh Linh của anh, cục cưng của anh, cục kim cương của anh và là cục vợ của anhhhh!!</p>
+          <p>Sao em lại tìm ra anh rứa hửm. Cái ngày em tìm thấy anh chắc em cũng nỏ có ngờ sẽ có ngày hai đứa mình thành đôi đâu he.
+            Em nói mà, em chỉ muốn nói chuyện với anh thôi, maybe có thể là làm bạn hay gì đó. 
+            Nhưng mà khi mọi kế hoạch của em kết thúc thì anh sẽ là người tiếp tục. Em làm sao mà ngờ được.</p>
+          <p>Anh cũng kể em nghe rất nhiều câu chuyện ròi và chắc đây là sẽ câu chuyện duy nhất anh dành riêng cho lúc này để kể cho em nghe nhá. 
+            Em đã từng hỏi anh rất nhiều lần về câu hỏi "Vì sao anh yeu em??". Dừ Thanh Giảng trả lời cho Khánh Linh nghe nhá. 
+            Ngay từ lần đầu gặp em, em đúng gu anh ngay từ đầu rồi vì em nhỏ nhắn, đáng yêu, xinh nữa nhưng mà chắc mấy lời khen này em cũng được nghe nhiều ròi ha. 
+            Nhưng mà có một chuyện em không biết, nhớ cái lần mình đi coi phim hông, lúc anh chở em về, anh không về, đứng đó và xem em đi vào ngõ. 
+            Thì lúc đó trong đầu anh tưởng tượng ra cảnh em sẽ đi vào ngõ như thế nào. 
+            Anh hay có thói quen xem cách họ phản ứng sau buổi đi chơi để biết họ có vui khi đi với anh không. 
+            Em đúng y như trong suy nghĩ của anh, em nhảy nhót, em tung tăng chạy vào ngõ. 
+            Từ lúc đó anh đã cảm thấy em có cái gì đó rất dính với anh ròi, anh muốn tìm hiểu em, xem như thế nào. 
+            Kể từ lúc đó là anh đã soạn sẵn kế hoạch yêu em đó:)))))  </p>
+          <p>Còn thứ hai, anh không nói nhiều, anh không thích nói, và em là người duy nhất anh tìm hiểu, anh muốn tiến xa hơn mà có thể nói chuyện với anh, làm anh mở mồm ra được để chia sẻ, để tâm sự. 
+            Anh thích tâm sự lắm, nhưng mà em là người con gái đầu tiên anh có thể nói, và được lắng nghe đọ.
+            Anh sống hơi cảm tính, và anh cảm thấy sẽ có một ngày hai đứa mình sẽ có thể ngồi đó nói chuyện cả ngày trời chỉ cần có nhau thôi.
+            Anh có sẵn kế hoạch trong đầu để xem thử hai đứa mình có thể là gì trong đời nhau rồi. Từ cái này em thơm má anh là anh đã biết được em nỏ còn đường lui nữa mô:))))
+            Chuỗi sự kiện sau này kiểu gì nó cũng tới mà. Từ những cái nắm tay tới những cái hôn sau này, tất cả đều là em tự trả lời cho câu hỏi Anh là ai trong đời em rồi đó.
+            Thật ra anh quá trình hai đứa mình gặp nhau, tiếp xúc với nhau, anh đã hỏi em rất nhiều câu hỏi, em nhớ mà đúng hông.
+            Thì anh hỏi vậy thôi, anh nỏ cần nghe em trả lời mô, anh hỏi để em tự trả lời cho bản thân em, xem thử rằng em có yêu anh không.
+            Và gần như tất cả những gì em trả lời đều là em yêu anh. 
+          </p>
+          <p>Anh hông dám hứa chi với em hết, vì anh cũng là một người toàn vẽ ra rất nhiều viễn cảnh trong tương lai nhưng chưa bao giờ đạt được. 
+            Anh không có nhiều nhưng anh sẽ cho đi những gì anh có. Nhưng mà, ngôn ngữ tình yêu anh là sự hiện diện, không biết gặp anh nhiều em có chán không nhưng mà yêu anh, anh sẽ không bao giờ biến mất trong cuộc sống của em đâu. 
+            Hy vọng Linh San với Khánh Hy được chào đời nhóoooo:)))))))))</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Khu vực Lời tỏ tình -->
+    <section class="proposal-altar">
+      <div class="altar-card">
+        <div class="sacred-heart">💖</div>
+        <h2 class="altar-question">Khánh Linh đồng ý làm người yêu anh nhóooooo❤️</h2>
+        
+        <div class="single-action-box">
+          <button id="btnAgree" class="btn-celestial-agree">
+            <span class="btn-text">Một chútttt❤️</span>
+            <div class="btn-supernova-glow"></div>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Hộp thoại Lightbox xem ảnh -->
+  <div id="imageLightbox" class="lightbox hide">
+    <div class="lightbox-blur-bg"></div>
+    <div class="lightbox-dialog">
+      <button id="closeLightbox" class="btn-close-box">×</button>
+      <div class="lightbox-media-wrapper">
+        <img id="lightboxImg" src="" alt="Khoảnh khắc" />
+      </div>
+      <p id="lightboxCaption" class="lightbox-desc"></p>
+    </div>
+  </div>
+
+  <!-- Bức thư tình và lời cảm ơn sau khi bấm Đồng ý -->
+  <div id="confessionLetterModal" class="confession-screen hide">
+    <div class="flash-overlay" id="flashOverlay"></div>
+    
+    <div class="confession-scroll-container">
+      <div class="confession-letter-card">
+        <div class="letter-crest">❤️</div>
+        <h2 class="confession-title">Yêu Khánh Linh lắm nhóoooooo</h2>
+        <div class="confession-subtitle">Ngày hôm nay chính là ngày hai đứa bắt đầu, ráng nhớ đó nhennnn</div>
+        <div class="confession-content">
+          <p>Cảm ơn cục cưng đã đồng ý nhá</p>
+          <p>Thì giờ em được dỗi, được giận, được làm phiền thoải mái rồi nhá. Sau anh mà có hỏi "em yêu hông" thì nỏ được trả lời một chút hỉ, anh quýnh đít em á:)))))))</p>
+          <p>Giờ coi xong ròi, quay lưng lại, anh ở đằng sau em nèeeee!!</p>
+          <div class="confession-signature">
+            <strong>Tặng em nháaaaaa ❤️</strong>
+            <strong>Giờ có yêu anh hôngggg:))) ❤️</strong>
+          </div>
+        </div>
+        <button id="btnCloseConfession" class="btn-keep-love"> Cóooo:))))✨</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
