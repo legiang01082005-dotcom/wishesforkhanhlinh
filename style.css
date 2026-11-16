@@ -354,7 +354,7 @@ body {
   margin-top: -14px;
 }
 
-/* ================= DANH SÁCH ẢNH ZÍC-ZẮC (ĐÃ BỎ DẢI LỤA HOÀN TOÀN) ================= */
+/* ================= DANH SÁCH ẢNH ZÍC-ZẮC & HIỆU ỨNG LƠ LỬNG ================= */
 .ribbon-gallery-section {
   position: relative;
   margin: 50px 0 80px;
@@ -391,7 +391,7 @@ body {
 .ribbon-items-container {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 55px;
   position: relative;
   z-index: 2;
 }
@@ -403,14 +403,18 @@ body {
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
+/* Hiệu ứng lơ lửng đung đưa tinh tế cho thẻ bên trái */
 .ribbon-card.left {
   align-self: flex-start;
   transform-origin: top right;
+  animation: swingLeft 6s ease-in-out infinite alternate;
 }
 
+/* Hiệu ứng lơ lửng đung đưa tinh tế cho thẻ bên phải */
 .ribbon-card.right {
   align-self: flex-end;
   transform-origin: top left;
+  animation: swingRight 6.5s ease-in-out infinite alternate;
 }
 
 .ribbon-pin {
@@ -419,6 +423,7 @@ body {
   font-size: 20px;
   z-index: 5;
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9));
+  animation: pinSparkle 2.2s infinite ease-in-out;
 }
 
 .ribbon-card.left .ribbon-pin {
@@ -486,8 +491,9 @@ body {
   color: #fff;
 }
 
-/* Hover trên máy tính */
+/* Dừng lơ lửng khi rê chuột vào để người dùng dễ bấm xem ảnh, đồng thời phóng to nhẹ */
 .ribbon-card:hover {
+  animation-play-state: paused;
   transform: scale(1.04) translateY(-6px) !important;
   z-index: 10;
 }
@@ -878,7 +884,24 @@ body {
   40%, 60% { transform: translateX(6px); }
 }
 
-/* ================= TỐI ƯU ĐẶC BIỆT CHO ĐIỆN THOẠI (MOBILE RESPONSIVE) ================= */
+@keyframes swingLeft {
+  0% { transform: rotate(-2.5deg) translateY(0); }
+  50% { transform: rotate(-0.5deg) translateY(-6px); }
+  100% { transform: rotate(-3.5deg) translateY(4px); }
+}
+
+@keyframes swingRight {
+  0% { transform: rotate(2.5deg) translateY(0); }
+  50% { transform: rotate(0.5deg) translateY(-6px); }
+  100% { transform: rotate(3.5deg) translateY(4px); }
+}
+
+@keyframes pinSparkle {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8)); }
+  50% { transform: scale(1.25); filter: drop-shadow(0 0 12px rgba(249, 212, 35, 1)); }
+}
+
+/* ================= TỐI ƯU CHO ĐIỆN THOẠI (MOBILE RESPONSIVE) ================= */
 @media (max-width: 768px) {
   .hero-name { 
     font-size: 52px; 
@@ -900,7 +923,7 @@ body {
     padding: 16px 10px; 
   }
   
-  /* Chuyển danh sách ảnh thành 1 cột thẳng trên điện thoại để dễ xem không bị tràn màn hình */
+  /* Đưa danh sách ảnh thành 1 cột dọc thẳng trên mobile */
   .ribbon-items-container {
     gap: 36px;
   }
